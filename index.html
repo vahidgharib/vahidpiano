@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Vahid Piano | Profesyonel Piyano Eğitimi</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+    body { font-family: 'Quicksand', sans-serif; transition: all 0.3s ease; }
+    .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out; }
+    .accordion-item.active .accordion-content { max-height: 800px; }
+    .accordion-item.active i { transform: rotate(180deg); }
+    .piano-border { border-bottom: 8px solid #1a1a1a; }
+    
+    /* حل مشکل چسبیدگی منو */
+    #nav-links {
+        display: flex;
+        gap: 2rem; /* ایجاد فاصله مناسب بین کلمات */
+        align-items: center;
+    }
+    /* تنظیم جهت منو برای زبان فارسی */
+    body[dir="rtl"] #nav-links {
+        flex-direction: row-reverse;
+    }
+</style>
+</head>
+<body class="bg-gray-50 text-gray-800 scroll-smooth">
+
+<div class="fixed top-24 right-4 z-[60] flex flex-col gap-2 bg-white/80 backdrop-blur p-2 rounded-2xl shadow-2xl border border-gray-200">
+    <button onclick="changeLanguage('tr')" class="p-2 rounded-full hover:bg-white transition">🇹🇷</button>
+    <button onclick="changeLanguage('en')" class="p-2 rounded-full hover:bg-white transition">🇺🇸</button>
+    <button onclick="changeLanguage('fa')" class="p-2 rounded-full hover:bg-white transition">🇮🇷</button>
+    <hr class="my-1">
+    <input type="color" id="bgPicker" oninput="changeBG(this.value)" class="w-8 h-8 rounded-full border-none cursor-pointer mx-auto" value="#f9fafb">
+</div>
+
+<nav class="fixed w-full bg-white/95 backdrop-blur-sm shadow-lg z-50 piano-border">
+    <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
+        <div class="flex flex-col">
+            <h1 class="text-2xl font-bold tracking-tighter text-gray-900">🎹 VAHID PIANO</h1>
+            <span id="nav-slogan" class="text-xs uppercase tracking-[0.2em] text-cyan-600 font-bold">Hayallerin, Parmaklarının Ucunda</span>
+        </div>
+        <div class="hidden md:flex font-semibold text-sm uppercase tracking-widest" id="nav-links">
+            <a href="#egitim" class="hover:text-cyan-600">Eğitim</a>
+            <a href="#avantaj" class="hover:text-cyan-600">Avantajlar</a>
+            <a href="#bilgi" class="hover:text-cyan-600">Bilgi</a>
+            <a href="#iletisim" class="hover:text-cyan-600">İletişim</a>
+        </div>
+    </div>
+</nav>
+
+<section class="relative h-screen flex items-center justify-center text-white overflow-hidden">
+    <div id="slider" class="absolute inset-0 z-0">
+        <img class="slide absolute w-full h-full object-cover opacity-60" src="https://images.unsplash.com/photo-1513883049090-d0b7439799bf">
+        <img class="slide absolute w-full h-full object-cover opacity-0" src="https://images.unsplash.com/photo-1507838153414-b4b713384a76">
+    </div>
+    <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-transparent to-black/70 z-10"></div>
+    <div class="relative text-center px-4 z-20">
+        <h1 id="hero-title" class="text-5xl md:text-8xl font-bold mb-6">Profesyonel Piyano Eğitimi</h1>
+        <p id="hero-sub" class="text-xl md:text-3xl mb-10 font-light italic">15 Yıllık Deneyim ile Sanata İlk Adım</p>
+        <div class="flex flex-col md:flex-row gap-4 justify-center items-center">
+            <a href="#iletisim" id="hero-btn" class="bg-cyan-600 hover:bg-cyan-700 text-white px-10 py-4 rounded-full font-bold shadow-xl transition-all">Ücretsiz Deneme Dersi</a>
+            <div class="bg-black/40 p-2 rounded-full"><audio id="player" controls class="h-8"></audio></div>
+        </div>
+    </div>
+</section>
+
+<section id="egitim" class="py-24 bg-white section-bg">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+        <h2 id="title-principles" class="text-4xl font-bold mb-16 uppercase">Eğitim İlkelerimiz</h2>
+        <div class="grid md:grid-cols-3 gap-12" id="principles-grid">
+            <div class="p-8"><i class="fas fa-fingerprint text-5xl text-cyan-600 mb-6"></i><h3 class="font-bold mb-4 uppercase">Teknik</h3><p class="text-gray-600"></p></div>
+            <div class="p-8"><i class="fas fa-music text-5xl text-cyan-600 mb-6"></i><h3 class="font-bold mb-4 uppercase">Teori</h3><p class="text-gray-600"></p></div>
+            <div class="p-8"><i class="fas fa-heart text-5xl text-cyan-600 mb-6"></i><h3 class="font-bold mb-4 uppercase">Metod</h3><p class="text-gray-600"></p></div>
+        </div>
+    </div>
+</section>
+
+<section id="avantaj" class="py-24 bg-gray-50 section-bg">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+        <h2 id="title-advantages" class="text-4xl font-bold mb-16 uppercase">Avantajlar & İندirimler</h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6" id="advantages-list">
+            <div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-100"><span class="text-cyan-600 font-bold text-3xl mb-4 block">%25</span><p class="font-bold"></p></div>
+            <div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-100"><span class="text-cyan-600 font-bold text-3xl mb-4 block">%45</span><p class="font-bold"></p></div>
+            <div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-100"><span class="text-cyan-600 font-bold text-3xl mb-4 block">%15</span><p class="font-bold"></p></div>
+            <div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-100"><span class="text-cyan-600 font-bold text-3xl mb-4 block">%28</span><p class="font-bold"></p></div>
+        </div>
+    </div>
+</section>
+
+<section id="sertifikalar" class="py-24 bg-white section-bg">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+        <h2 id="title-certificates" class="text-4xl font-bold mb-16 uppercase">Sertifikalarımız</h2>
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="rounded-2xl overflow-hidden shadow-lg border border-gray-200 bg-gray-50 p-2 transition hover:scale-105">
+                <img src="page1.jpg" alt="Certificate 1" class="w-full h-auto rounded-xl">
+            </div>
+            <div class="rounded-2xl overflow-hidden shadow-lg border border-gray-200 bg-gray-50 p-2 transition hover:scale-105">
+                <img src="page2.jpg" alt="Certificate 2" class="w-full h-auto rounded-xl">
+            </div>
+            <div class="rounded-2xl overflow-hidden shadow-lg border border-gray-200 bg-gray-50 p-2 transition hover:scale-105">
+                <img src="page3.jpeg" alt="Certificate 3" class="w-full h-auto rounded-xl">
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="bilgi" class="py-24 bg-white section-bg">
+    <div class="max-w-4xl mx-auto px-6">
+        <h2 id="title-faq" class="text-4xl font-bold text-center mb-16 uppercase">Bilgilendirmeler</h2>
+        <div class="space-y-4" id="faq-list"></div>
+    </div>
+</section>
+
+<section id="iletisim" class="py-24 bg-gray-50 section-bg">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="grid md:grid-cols-2 gap-12 items-start">
+            <div>
+                <h2 id="title-contact" class="text-4xl font-bold mb-8 uppercase">İletişim</h2>
+                <div class="space-y-6">
+                    <p id="contact-text" class="text-xl text-gray-700 font-semibold"></p>
+                    <a href="https://wa.me/905078475685" id="wa-btn-text" class="inline-block bg-green-500 text-white px-10 py-4 rounded-full font-bold shadow-lg hover:bg-green-600 transition"></a>
+                    <div class="mt-8 pt-8 border-t border-gray-200">
+                        <h4 id="note-title" class="font-bold mb-4 text-red-500 uppercase"></h4>
+                        <p id="note-text" class="text-sm bg-red-50 p-6 rounded-2xl text-red-700 leading-relaxed"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="space-y-6">
+                <div class="rounded-3xl overflow-hidden shadow-2xl bg-white p-2">
+                    <video class="w-full h-full rounded-2xl" controls><source src="piano-performance.mp4" type="video/mp4"></video>
+                </div>
+                <div class="text-center p-6 bg-white rounded-3xl shadow-sm">
+                    <h4 id="social-title" class="font-bold mb-4 uppercase">Sosyal Medya</h4>
+                    <div class="flex justify-center gap-8 text-4xl mb-6">
+                        <a href="https://www.facebook.com/profile.php?id=61586573590886" target="_blank" class="text-blue-600 hover:scale-110 transition"><i class="fab fa-facebook"></i></a>
+                        <a href="https://www.youtube.com/@vahidghariblou" target="_blank" class="text-red-600 hover:scale-110 transition"><i class="fab fa-youtube"></i></a>
+                    </div>
+                    <p id="yt-link-text" class="text-sm text-gray-500"></p>
+                    <a href="https://www.youtube.com/watch?v=nLxDCckiMU0" target="_blank" class="text-cyan-600 underline font-bold">YouTube Video</a>
+                </div>
+            </div>
+        </div>
+        <div class="mt-12 rounded-3xl overflow-hidden shadow-lg border-4 border-white">
+            <iframe class="w-full h-96" src="https://www.google.com/maps/embed?pb=!3m2!1sfa!2str!4v1770558086718!5m2!1sfa!2str!6m8!1m7!1sIOUMaTYyLyY_YOumwkE9aA!2m2!1d39.89578877217507!2d32.87287684324574!3f223.71504279831802!4f5.6976261805160675!5f0.7820865974627469" frameborder="0"></iframe>
+        </div>
+    </div>
+</section>
+
+<footer class="bg-gray-900 text-white py-12 text-center">
+    <p id="footer-text" class="opacity-50"></p>
+</footer>
+
+<a href="https://wa.me/905078475685" class="fixed bottom-6 right-6 bg-green-500 text-white p-5 rounded-full shadow-2xl text-3xl z-50 hover:scale-110 transition">
+    <i class="fab fa-whatsapp"></i>
+</a>
+
+<script>
+const translations = {
+    tr: {
+        nav: ["Eğitim", "Avantajlar", "Bilgi", "İletişim"],
+        slogan: "Hayallerin, Parmaklarının Ucunda",
+        heroT: "Profesyonel Piyano Eğitimi",
+        heroS: "15 Yıllık Deneyim ile Sanata İlk Adım",
+        heroB: "Ücretsiz Deneme Dersi",
+        titles: { principles: "EĞİTİM İLKELERİMİZ", advantages: "AVANTAJLAR & İNDİRİMLER", faq: "BİLGİLENDİRMELER", contact: "İLETİŞİM", social: "SOSYAL MEDYA", certs: "Sertifikalarımız" },
+        principles: [
+            ["Doğru Teknik", "Akustik piyano ile parmak gelişimi ve müzikal disiplini inşa ediyoruz."],
+            ["Teorik Altyapı", "Nota, ritim ve armoni bilgisiyle kapsamlı müzikal altyapı sunuyoruz."],
+            ["Bireysel Metod", "Her yaşa ve hedefe uygun kişiselleştirilmiş eğitim programı."]
+        ],
+        adv: ["Haftada birden fazla ders indirimi", "Aile ve kardeş indirimi", "4 Aylık erken ödeme fırsatı", "6 Aylık erken ödeme fırsatı"],
+        faq: [
+            ["Burası bir kurs merkezi mi?", "Burası bir kurs merkezi değil, bire bir piyano eğitimi verilen profesyonel bir özel ders ortamıdır."],
+            ["Hangi yaş grupları kabul ediliyor?", "Çocuklar ve yetişkinler için uygundur. Sıfırdان başlayan öğrenciler kabul edilmektedir."],
+            ["Dersler nerede yapılıyor?", "Dersler tercihinize göre kendi evimde veya öğrencinین evinde yüz yüزه yapılmaktadır. Ayrıca online eğitim seçeneği de mevcuttur."],
+            ["Kedi hassasiyeti ve ortam?", "Evimizde evcil hayvan bulunمامaktadır. Dersler sigara içilmeyen, güvenli ve konforlu bir ev ortamında işlenmektedir."],
+            ["Eğitmenin geçmişی?", "Eğitmenin akademik geçmişi ve 15 yıllık mesleki deneyimi talep üzerine paylaşılmaktadır."]
+        ],
+        contact: "Detaylı bilgi için (+90 507 847 56 85) numarasından ulaşabilirsiniz.",
+        wa: "WhatsApp ile İletişim",
+        noteT: "Önemli Not",
+        noteX: "Deneme ve eğitim dersleri, eğitmen ve öğrenci arasındaki ortak karar ve koordinasyon ile gerçekleştirilir.",
+        ytText: "Videoyu YouTube üzerinden izlemek isterseniz:",
+        footer: "© 2026 Vahid Piano Performance. Tüm hakları saklıdır."
+    },
+    en: {
+        nav: ["Education", "Advantages", "Info", "Contact"],
+        slogan: "Dreams at your fingertips",
+        heroT: "Professional Piano Education",
+        heroS: "First step to art with 15 years of experience",
+        heroB: "Free Trial Lesson",
+        titles: { principles: "EDUCATIONAL PRINCIPLES", advantages: "ADVANTAGES & DISCOUNTS", faq: "INFORMATION", contact: "CONTACT", social: "SOCIAL MEDIA", certs: "Our Certificates" },
+        principles: [
+            ["Correct Technique", "We build finger development and musical discipline with acoustic piano."],
+            ["Theoretical Base", "Comprehensive musical background with note, rhythm, and harmony."],
+            ["Individual Method", "Customized education program suitable for all ages and goals."]
+        ],
+        adv: ["Discount for multiple lessons", "Family and sibling discount", "4-Month early payment offer", "6-Month early payment offer"],
+        faq: [
+            ["Is this a course center?", "This is not a course center, but a professional private lesson environment for one-on-one piano education."],
+            ["Which age groups are accepted?", "Suitable for children and adults. Students starting from scratch are accepted."],
+            ["Where are the lessons?", "Lessons take place either at my home or the student's home. Online lessons are also an option."],
+            ["Cat sensitivity and environment?", "There are no pets in the house. The lessons take place in a smoke-free, safe, and comfortable home environment."],
+            ["Instructor's background?", "The instructor's academic background and 15 years of professional experience are shared upon request."]
+        ],
+        contact: "For detailed information, contact (+90 507 847 56 85).",
+        wa: "Contact via WhatsApp",
+        noteT: "Important Note",
+        noteX: "Trial and educational sessions are scheduled based on mutual consultation and agreement between the instructor and the student.",
+        ytText: "If you want to watch the video on YouTube:",
+        footer: "© 2026 Vahid Piano Performance. All rights reserved."
+    },
+    fa: {
+        nav: ["آموزش", "مزایا", "توضیحات", "تماس"],
+        slogan: "رویاها در نوک انگشتان شما",
+        heroT: "آموزش حرفه‌ای پیانو",
+        heroS: "اولین قدم به سوی هنر با ۱۵ سال تجربه",
+        heroB: "جلسه آزمایشی رایگان",
+        titles: { principles: "اصول آموزشی ما", advantages: "مزایا و تخفیف‌ها", faq: "توضیحات تکمیلی", contact: "تماس با ما", social: "شبکه‌های اجتماعی", certs: "گواهینامه‌های ما" },
+        principles: [
+            ["تکنیک صحیح", "توسعه انگشتان و انضباط موسیقی را با پیانو آکوستیک بنا می‌کنیم."],
+            ["پایه تئوریک", "پیش‌زمینه جامع موسیقی شامل نت، ریتم و هارمونی."],
+            ["متد انفرادی", "برنامه آموزشی سفارشی مناسب برای تمام سنین و اهداف."]
+        ],
+        adv: ["تخفیف برای بیش از یک جلسه", "تخفیف خانواده و خواهر و برادر", "پیشنهاد پرداخت ۴ ماهه", "پیشنهاد پرداخت ۶ ماهه"],
+        faq: [
+            ["آیا این یک مرکز آموزشی عمومی است؟", "خیر، اینجا یک محیط آموزش خصوصی برای آموزش انفرادی پیانو است."],
+            ["چه گروه‌های سنی پذیرفته می‌شوند؟", "مناسب برای کودکان و بزرگسالان. هنرجویان از سطح صفر پذیرفته می‌شوند."],
+            ["کلاس‌ها کجا برگزار می‌شود؟", "کلاس‌ها به انتخاب شما در منزل بنده یا منزل دانشجو برگزار می‌شوند. همچنین امکان آموزش آنلاین نیز وجود دارد."],
+            ["حساسیت به گربه و محیط؟", "در منزل حیوان خانگی (گربه) وجود ندارد. کلاس‌ها در محیطی امن، راحت و بدون استعمال دخانیات برگزار می‌شوند."],
+            ["سوابق استاد؟", "سوابق آکادمیک و ۱۵ سال تجربه حرفه‌ای نوازندگی در صورت درخواست ارائه می‌شود."]
+        ],
+        contact: "برای اطلاعات بیشتر با شماره (۸۵ ۵۶ ۸۴۷ ۵۰۷ ۹۰+) تماس بگیرید.",
+        wa: "ارتباط از طریق واتس‌اپ",
+        noteT: "نکته مهم",
+        noteX: "جلسات آزمایشی و آموزشی با هماهنگی و مشورت قبلی بین استاد و هنرجو برگزار می‌گردد.",
+        ytText: "اگر می‌خواهید ویدیو را در یوتیوب ببینید:",
+        footer: "© ۲۰۲۶ آموزش پیانو وحید. تمامی حقوق محفوظ است."
+    }
+};
+
+function changeLanguage(lang) {
+    const t = translations[lang];
+    document.body.dir = (lang === 'fa') ? 'rtl' : 'ltr';
+    
+    // اصلاح بخش پیمایش منو برای اعمال صحیح فاصله و متون
+    const navLinks = document.getElementById('nav-links');
+    const hrefs = ['#egitim', '#avantaj', '#bilgi', '#iletisim'];
+    navLinks.innerHTML = ''; 
+    t.nav.forEach((item, i) => {
+        navLinks.innerHTML += `<a href="${hrefs[i]}" class="hover:text-cyan-600">${item}</a>`;
+    });
+
+    document.getElementById('nav-slogan').innerText = t.slogan;
+    document.getElementById('hero-title').innerText = t.heroT;
+    document.getElementById('hero-sub').innerText = t.heroS;
+    document.getElementById('hero-btn').innerText = t.heroB;
+    document.getElementById('title-principles').innerText = t.titles.principles;
+    document.getElementById('title-advantages').innerText = t.titles.advantages;
+    document.getElementById('title-faq').innerText = t.titles.faq;
+    document.getElementById('title-contact').innerText = t.titles.contact;
+    document.getElementById('social-title').innerText = t.titles.social;
+    document.getElementById('title-certificates').innerText = t.titles.certs; // TRANSLATE CERTS TITLE
+    
+    document.querySelectorAll('#principles-grid div').forEach((div, i) => {
+        div.querySelector('h3').innerText = t.principles[i][0];
+        div.querySelector('p').innerText = t.principles[i][1];
+    });
+    
+    document.querySelectorAll('#advantages-list p').forEach((p, i) => p.innerText = t.adv[i]);
+    
+    const faqCont = document.getElementById('faq-list');
+    faqCont.innerHTML = '';
+    t.faq.forEach(item => {
+        faqCont.innerHTML += `
+            <div class="accordion-item border border-gray-200 rounded-2xl overflow-hidden shadow-sm">
+                <button onclick="toggleAccordion(this)" class="w-full p-6 text-left flex justify-between items-center bg-white hover:bg-gray-50 font-bold">
+                    <span>${item[0]}</span><i class="fas fa-chevron-down text-cyan-600 transition-transform"></i>
+                </button>
+                <div class="accordion-content bg-gray-50"><div class="p-6 text-gray-600 border-t">${item[1]}</div></div>
+            </div>`;
+    });
+    
+    document.getElementById('contact-text').innerText = t.contact;
+    document.getElementById('wa-btn-text').innerText = t.wa;
+    document.getElementById('note-title').innerText = t.noteT;
+    document.getElementById('note-text').innerText = t.noteX;
+    document.getElementById('yt-link-text').innerText = t.ytText;
+    document.getElementById('footer-text').innerText = t.footer;
+}
+
+function toggleAccordion(btn) { btn.parentElement.classList.toggle('active'); }
+function changeBG(c) { document.body.style.backgroundColor = c; document.querySelectorAll('.section-bg').forEach(s => s.style.backgroundColor = c); }
+
+let slides = document.querySelectorAll('.slide'), idx = 0;
+setInterval(() => { slides[idx].style.opacity = 0; idx = (idx + 1) % slides.length; slides[idx].style.opacity = 0.6; }, 6000);
+
+document.getElementById("player").src = "audio (4).mp3";
+changeLanguage('tr'); 
+</script>
+</body>
+</html>
